@@ -11,7 +11,7 @@ const getUsers = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   try {
     const result = await getAllUsers(page, limit);
-    res.json(result);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -19,9 +19,9 @@ const getUsers = async (req, res) => {
 
 // Crear un nuevo usuario
 const createUserHandler = async (req, res) => {
-  const { usuario, correo, contrasena, rol_id } = req.body;
+  const { usuario, correo, contrasena, rol_id, nombre, apell_paterno, apell_materno, tipo_usuario } = req.body;
   try {
-    const newUser = await createUser(usuario, correo, contrasena, rol_id);
+    const newUser = await createUser(usuario, correo, contrasena, rol_id, nombre, apell_paterno, apell_materno, tipo_usuario);
     res.status(201).json(newUser);
   } catch (error) {
     res.status(400).json({ error: error.message });

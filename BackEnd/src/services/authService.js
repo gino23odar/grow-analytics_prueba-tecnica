@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 const { JWT_SECRET } = process.env;
 
 const generateToken = (user) => {
-  return jwt.sign({ id: user.id, rol: user.rol_id }, JWT_SECRET, {
+  return jwt.sign({ id: user.id, rol: user.tipo_usuario }, JWT_SECRET, {
     expiresIn: '1h',
   });
 };
@@ -28,7 +28,7 @@ const login = async (correo, contrasena) => {
   return token;
 };
 
-const register = async (usuario, correo, contrasena, rol_id) => {
+const register = async (usuario, correo, contrasena, rol_id, nombre, apell_paterno, apell_materno, tipo_usuario) => {
   const hashedPassword = await bcrypt.hash(contrasena, 10);
   const newUser = await prisma.usuario.create({
     data: {
@@ -36,6 +36,10 @@ const register = async (usuario, correo, contrasena, rol_id) => {
       correo,
       contrasena: hashedPassword,
       rol_id,
+      nombre, 
+      apell_paterno, 
+      apell_materno,
+      tipo_usuario
     },
   });
   return newUser;

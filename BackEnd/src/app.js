@@ -5,7 +5,7 @@ const swaggerDocs = require('./config/swagger');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
-const { authenticateJWT } = require('./middlewares/auth');
+const authenticateJWT = require('./middlewares/auth');
 
 dotenv.config();
 

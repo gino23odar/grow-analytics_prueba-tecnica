@@ -26,7 +26,7 @@ const getUserById = async (id) => {
   return user;
 };
 
-const createUser = async (usuario, correo, contrasena, rol_id, tipo_usuario) => {
+const createUser = async (usuario, correo, contrasena, rol_id, nombre, apell_paterno, apell_materno, tipo_usuario) => {
   if (!['admin'].includes(tipo_usuario)) {
     throw new Error('Tipo de usuario inválido');
   }
@@ -38,6 +38,9 @@ const createUser = async (usuario, correo, contrasena, rol_id, tipo_usuario) => 
       correo,
       contrasena: hashedPassword,
       rol_id,
+      nombre, 
+      apell_paterno, 
+      apell_materno,
       tipo_usuario,
     },
   });
