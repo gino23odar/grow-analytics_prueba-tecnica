@@ -108,3 +108,6 @@ FrontEnd/.vercel
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+FrontEnd/frontend/.next
